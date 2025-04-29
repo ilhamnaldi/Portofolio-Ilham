@@ -1,5 +1,5 @@
 import streamlit as st
-#import plotly.express as px
+import matplotlib.pyplot as plt
 import pandas as pd
 
 # Page configuration
@@ -44,17 +44,17 @@ if page == "Home":
 elif page == "Projects":
     st.title("My Projects")
 
-    # Project: Interactive Sales Visualization
-    with st.expander("Project: Interactive Sales Dashboard"):
+    # Project: Interactive Sales Dashboard with Matplotlib
+    with st.expander("Project: Interactive Sales Dashboard (Matplotlib)"):
         col1, col2 = st.columns([1, 3])
         with col1:
-            st.image("https://via.placeholder.com/150/0af/fff.png?text=Sales+Viz", width=150)
+            st.image("https://via.placeholder.com/150/0af/fff.png?text=Sales+Chart", width=150)
         with col2:
-            st.subheader("Interactive Sales Dashboard")
-            st.write("This dashboard allows exploration of monthly sales by region.")
-            st.write("**Technologies used:** Python, Pandas, Plotly, Streamlit")
+            st.subheader("Interactive Sales Dashboard (Matplotlib)")
+            st.write("This dashboard shows monthly sales trends by region using matplotlib.")
+            st.write("**Technologies used:** Python, Pandas, Matplotlib, Streamlit")
 
-        # Sample Data
+        # Sample data
         data = {
             "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"] * 3,
             "Region": ["West"] * 6 + ["Central"] * 6 + ["East"] * 6,
@@ -63,11 +63,18 @@ elif page == "Projects":
         df = pd.DataFrame(data)
 
         # Interactivity
-        region = st.selectbox("Select Region", df["Region"].unique())
-        filtered_df = df[df["Region"] == region]
+        selected_region = st.selectbox("Select Region", df["Region"].unique())
+        filtered_df = df[df["Region"] == selected_region]
 
-        fig = px.line(filtered_df, x="Month", y="Sales", title=f"Monthly Sales in {region} Region")
-        st.plotly_chart(fig, use_container_width=True)
+        # Plotting
+        fig, ax = plt.subplots()
+        ax.plot(filtered_df["Month"], filtered_df["Sales"], marker='o', linestyle='-')
+        ax.set_title(f"Monthly Sales in {selected_region} Region")
+        ax.set_xlabel("Month")
+        ax.set_ylabel("Sales")
+        ax.grid(True)
+
+        st.pyplot(fig)
 
 elif page == "Skills":
     st.title("My Skills")
