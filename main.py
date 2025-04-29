@@ -1,4 +1,6 @@
 import streamlit as st
+import plotly.express as px
+import pandas as pd
 
 # Page configuration
 st.set_page_config(
@@ -41,28 +43,31 @@ if page == "Home":
 
 elif page == "Projects":
     st.title("My Projects")
-    
-    # Project 1
-    with st.expander("Project 1: E-commerce Website"):
+
+    # Project: Interactive Sales Visualization
+    with st.expander("Project: Interactive Sales Dashboard"):
         col1, col2 = st.columns([1, 3])
         with col1:
-            st.image("https://via.placeholder.com/150", width=150)
+            st.image("https://via.placeholder.com/150/0af/fff.png?text=Sales+Viz", width=150)
         with col2:
-            st.subheader("E-commerce Website")
-            st.write("A full-stack e-commerce website built with React, Node.js, and MongoDB.")
-            st.write("**Technologies used:** React, Node.js, Express, MongoDB")
-            st.markdown("[GitHub Repository](https://github.com)")
-    
-    # Project 2
-    with st.expander("Project 2: Data Analysis Dashboard"):
-        col1, col2 = st.columns([1, 3])
-        with col1:
-            st.image("https://via.placeholder.com/150", width=150)
-        with col2:
-            st.subheader("Data Analysis Dashboard")
-            st.write("An interactive dashboard for visualizing sales data.")
-            st.write("**Technologies used:** Python, Pandas, Streamlit, Plotly")
-            st.markdown("[GitHub Repository](https://github.com/ilhamnaldi)")
+            st.subheader("Interactive Sales Dashboard")
+            st.write("This dashboard allows exploration of monthly sales by region.")
+            st.write("**Technologies used:** Python, Pandas, Plotly, Streamlit")
+
+        # Sample Data
+        data = {
+            "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"] * 3,
+            "Region": ["West"] * 6 + ["Central"] * 6 + ["East"] * 6,
+            "Sales": [250, 300, 280, 350, 400, 420, 200, 230, 210, 280, 310, 330, 180, 220, 200, 260, 290, 310]
+        }
+        df = pd.DataFrame(data)
+
+        # Interactivity
+        region = st.selectbox("Select Region", df["Region"].unique())
+        filtered_df = df[df["Region"] == region]
+
+        fig = px.line(filtered_df, x="Month", y="Sales", title=f"Monthly Sales in {region} Region")
+        st.plotly_chart(fig, use_container_width=True)
 
 elif page == "Skills":
     st.title("My Skills")
