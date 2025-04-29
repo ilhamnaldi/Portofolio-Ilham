@@ -49,9 +49,9 @@ elif page == "Projects":
         region = st.selectbox("Select Region", ["West", "Central", "East"])
 
         data = {
-            "West": [250, 300, 280, 350, 400, 420],
+            "West": [250, 300, 100, 350, 400, 420],
             "Central": [200, 230, 210, 280, 310, 330],
-            "East": [180, 220, 200, 260, 290, 310]
+            "East": [180, 220, 200, 400, 290, 310]
         }
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
         df = pd.DataFrame({ "Month": months, "Sales": data[region] }).set_index("Month")
