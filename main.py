@@ -1,5 +1,5 @@
 import streamlit as st
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pandas as pd
 
 # Page configuration
@@ -44,37 +44,19 @@ if page == "Home":
 elif page == "Projects":
     st.title("My Projects")
 
-    # Project: Interactive Sales Dashboard with Matplotlib
-    with st.expander("Project: Interactive Sales Dashboard (Matplotlib)"):
-        col1, col2 = st.columns([1, 3])
-        with col1:
-            st.image("https://via.placeholder.com/150/0af/fff.png?text=Sales+Chart", width=150)
-        with col2:
-            st.subheader("Interactive Sales Dashboard (Matplotlib)")
-            st.write("This dashboard shows monthly sales trends by region using matplotlib.")
-            st.write("**Technologies used:** Python, Pandas, Matplotlib, Streamlit")
+    with st.expander("Project: Interactive Line Chart (Built-in)"):
+        st.subheader("Sales Trend with Streamlit Built-in Chart")
+        region = st.selectbox("Select Region", ["West", "Central", "East"])
 
-        # Sample data
         data = {
-            "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"] * 3,
-            "Region": ["West"] * 6 + ["Central"] * 6 + ["East"] * 6,
-            "Sales": [250, 300, 280, 350, 400, 420, 200, 230, 210, 280, 310, 330, 180, 220, 200, 260, 290, 310]
+            "West": [250, 300, 280, 350, 400, 420],
+            "Central": [200, 230, 210, 280, 310, 330],
+            "East": [180, 220, 200, 260, 290, 310]
         }
-        df = pd.DataFrame(data)
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        df = pd.DataFrame({ "Month": months, "Sales": data[region] }).set_index("Month")
 
-        # Interactivity
-        selected_region = st.selectbox("Select Region", df["Region"].unique())
-        filtered_df = df[df["Region"] == selected_region]
-
-        # Plotting
-        fig, ax = plt.subplots()
-        ax.plot(filtered_df["Month"], filtered_df["Sales"], marker='o', linestyle='-')
-        ax.set_title(f"Monthly Sales in {selected_region} Region")
-        ax.set_xlabel("Month")
-        ax.set_ylabel("Sales")
-        ax.grid(True)
-
-        st.pyplot(fig)
+        st.line_chart(df)
 
 elif page == "Skills":
     st.title("My Skills")
