@@ -7,6 +7,16 @@ import pandas as pd
 import os
 os.system("pip install joblib")
 
+import pickle
+
+# Simpan model dan feature columns
+with open("delivery_model.pkl", "wb") as f:
+    pickle.dump(model, f)
+
+with open("model_features.pkl", "wb") as f:
+    pickle.dump(X.columns.tolist(), f)
+
+
 # Page configuration
 st.set_page_config(
     page_title="My Portfolio",
