@@ -60,7 +60,7 @@ elif page == "Projects":
 
     st.title("Time Estimated Prediction")
 
-    # Input Form
+# Input Form
     distance = st.slider("Jarak Pengiriman (km)", 0.0, 30.0, 5.0)
     prep_time = st.slider("Waktu Persiapan Makanan (menit)", 0, 60, 15)
     experience = st.slider("Pengalaman Kurir (tahun)", 0, 10, 2)
@@ -89,8 +89,11 @@ elif page == "Projects":
     if f'Vehicle_Type_{vehicle}' in feature_columns and vehicle != "Bike":
         input_dict[f'Vehicle_Type_{vehicle}'] = 1
 
+    input_df = pd.DataFrame([input_dict])[feature_columns]
 
-
+    if st.button("Prediksi"):
+        pred = model.predict(input_df)[0]
+        st.success(f"⏱️ Estimasi Waktu Pengiriman: {pred:.2f} menit")
     
 
 elif page == "Skills":
