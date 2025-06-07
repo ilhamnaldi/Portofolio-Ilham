@@ -89,11 +89,7 @@ elif page == "Projects":
     if f'Vehicle_Type_{vehicle}' in feature_columns and vehicle != "Bike":
         input_dict[f'Vehicle_Type_{vehicle}'] = 1
 
-    input_df = pd.DataFrame([input_dict])[feature_columns]
 
-    if st.button("Prediksi"):
-        pred = model.predict(input_df)[0]
-        st.success(f"⏱️ Estimasi Waktu Pengiriman: {pred:.2f} menit")
 
     
 
