@@ -58,6 +58,10 @@ elif page == "Projects":
 
         st.line_chart(df)
 
+    st.title("Time Estimated Prediction")
+
+    
+
 elif page == "Skills":
     st.title("My Skills")
     
@@ -130,10 +134,7 @@ elif page == "Experience":
             data=file,
             file_name="CV_Ilham_Rinaldi.pdf",
             mime="application/pdf"
-        )
-
-    st.title("Time Estimated Prediction")
-        
+        )        
 
 elif page == "Contact":
     st.title("Contact Me")
