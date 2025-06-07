@@ -1,9 +1,11 @@
 import streamlit as st
 # import matplotlib.pyplot as plt
 import pandas as pd
-import joblib
+# import joblib
 # joblib.dump(model, "delivery_model.pkl")
 # joblib.dump(X.columns.tolist(), "model_features.pkl")
+import os
+os.system("pip install joblib")
 
 # Page configuration
 st.set_page_config(
