@@ -2,6 +2,8 @@ import streamlit as st
 # import matplotlib.pyplot as plt
 import pandas as pd
 import joblib
+joblib.dump(model, "delivery_model.pkl")
+joblib.dump(X.columns.tolist(), "model_features.pkl")
 
 # Page configuration
 st.set_page_config(
