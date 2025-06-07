@@ -132,6 +132,8 @@ elif page == "Experience":
             mime="application/pdf"
         )
 
+    st.title("Time Estimated Prediction")
+        
 
 elif page == "Contact":
     st.title("Contact Me")
