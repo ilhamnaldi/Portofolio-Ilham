@@ -60,6 +60,41 @@ elif page == "Projects":
 
     st.title("Time Estimated Prediction")
 
+    # Input Form
+    distance = st.slider("Jarak Pengiriman (km)", 0.0, 30.0, 5.0)
+    prep_time = st.slider("Waktu Persiapan Makanan (menit)", 0, 60, 15)
+    experience = st.slider("Pengalaman Kurir (tahun)", 0, 10, 2)
+
+    weather = st.selectbox("Kondisi Cuaca", ["Clear", "Foggy", "Rainy", "Snowy", "Windy"])
+    traffic = st.selectbox("Tingkat Kemacetan", ["Low", "Medium", "High"])
+    time_of_day = st.selectbox("Waktu Pengiriman", ["Morning", "Afternoon", "Evening", "Night"])
+    vehicle = st.selectbox("Jenis Kendaraan", ["Bike", "Car", "Scooter"])
+
+    # One-hot encode input
+    input_dict = {
+        'Distance_km': distance,
+        'Preparation_Time_min': prep_time,
+        'Courier_Experience_yrs': experience
+    }
+    for col in feature_columns:
+        if col not in input_dict:
+            input_dict[col] = 0
+
+    if f'Weather_{weather}' in feature_columns:
+        input_dict[f'Weather_{weather}'] = 1
+    if f'Traffic_Level_{traffic}' in feature_columns and traffic != "High":
+        input_dict[f'Traffic_Level_{traffic}'] = 1
+    if f'Time_of_Day_{time_of_day}' in feature_columns and time_of_day != "Afternoon":
+        input_dict[f'Time_of_Day_{time_of_day}'] = 1
+    if f'Vehicle_Type_{vehicle}' in feature_columns and vehicle != "Bike":
+        input_dict[f'Vehicle_Type_{vehicle}'] = 1
+
+    input_df = pd.DataFrame([input_dict])[feature_columns]
+
+    if st.button("Prediksi"):
+        pred = model.predict(input_df)[0]
+        st.success(f"⏱️ Estimasi Waktu Pengiriman: {pred:.2f} menit")
+
     
 
 elif page == "Skills":
