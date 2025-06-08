@@ -57,7 +57,6 @@ pyzmq==26.2.0
 referencing==0.36.2
 requests==2.32.3
 rpds-py==0.24.0
-scikit-learn==1.6.0
 scipy==1.14.1
 seaborn==0.13.2
 six==1.16.0
