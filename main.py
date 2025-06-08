@@ -1,11 +1,9 @@
 import streamlit as st
 # import matplotlib.pyplot as plt
 import pandas as pd
-# import os
-# os.system("pip install joblib")
-# # import joblib
-# joblib.dump(model, open("delivery_model.pkl")
-# joblib.dump(X.columns.tolist(), open("model_features.pkl")
+import joblib
+model = joblib.load("delivery_model.pkl")
+feature_columns = joblib.load("model_features.pkl")
 
 
 import pickle
