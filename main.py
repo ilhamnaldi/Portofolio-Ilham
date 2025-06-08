@@ -1,12 +1,16 @@
 import streamlit as st
 import pandas as pd
-import pickle
+# import pickle
+import joblib
 
-# Load model and feature
-with open("delivery_model.pkl", "rb") as f:
-    model = pickle.load(f)
-with open("model_features.pkl", "rb") as f:
-    feature_columns = pickle.load(f)
+# # Load model and feature
+# with open("delivery_model.pkl", "rb") as f:
+#     model = pickle.load(f)
+# with open("model_features.pkl", "rb") as f:
+#     feature_columns = pickle.load(f)
+
+model = joblib.load("delivery_model.joblib")
+feature_columns = joblib.load("model_features.joblib")
 
 # Page configuration
 st.set_page_config(
