@@ -6,7 +6,7 @@ model = joblib.load("delivery_model.pkl")
 feature_columns = joblib.load("model_features.pkl")
 
 
-import pickle
+# import pickle
 
 # Load model
 with open("delivery_model.pkl", "rb") as f:
