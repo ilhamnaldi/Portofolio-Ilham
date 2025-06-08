@@ -1,10 +1,16 @@
 import streamlit as st
 # import matplotlib.pyplot as plt
 import pandas as pd
-import joblib
-model = joblib.load("delivery_model.pkl")
-feature_columns = joblib.load("model_features.pkl")
+# import joblib
+# model = joblib.load("delivery_model.pkl")
+# feature_columns = joblib.load("model_features.pkl")
+# Load model
+with open("delivery_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
+# Load fitur kolom
+with open("model_features.pkl", "rb") as f:
+    feature_columns = pickle.load(f)
 
 # import pickle
 
