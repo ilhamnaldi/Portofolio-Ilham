@@ -8,15 +8,15 @@ import pandas as pd
 # joblib.dump(X.columns.tolist(), open("model_features.pkl")
 
 
-import pickle
+# import pickle
 
-# Load model yang sudah disimpan
-with open("delivery_model.pkl", "rb") as f:
-    model = pickle.load(f)
+# # Load model yang sudah disimpan
+# with open("delivery_model.pkl", "rb") as f:
+#     model = pickle.load(f)
 
-# Load fitur
-with open("model_features.pkl", "rb") as f:
-    feature_columns = pickle.load(f)
+# # Load fitur
+# with open("model_features.pkl", "rb") as f:
+#     feature_columns = pickle.load(f)
 
 
 
