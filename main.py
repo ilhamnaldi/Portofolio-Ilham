@@ -9,12 +9,14 @@ os.system("pip install joblib")
 
 import pickle
 
-# Simpan model dan feature columns
-with open("delivery_model.pkl", "wb") as f:
-    pickle.dump(model, f)
+# Load model yang sudah disimpan
+with open("delivery_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
-with open("model_features.pkl", "wb") as f:
-    pickle.dump(X.columns.tolist(), f)
+# Load fitur
+with open("model_features.pkl", "rb") as f:
+    feature_columns = pickle.load(f)
+
 
 
 # Page configuration
