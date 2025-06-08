@@ -1,22 +1,22 @@
 import streamlit as st
 # import matplotlib.pyplot as plt
 import pandas as pd
-import os
-os.system("pip install joblib")
-# import joblib
-joblib.dump(model, open("delivery_model.pkl")
-joblib.dump(X.columns.tolist(), open("model_features.pkl")
+# import os
+# os.system("pip install joblib")
+# # import joblib
+# joblib.dump(model, open("delivery_model.pkl")
+# joblib.dump(X.columns.tolist(), open("model_features.pkl")
 
 
-# import pickle
+import pickle
 
-# # Load model yang sudah disimpan
-# with open("delivery_model.pkl", "rb") as f:
-#     model = pickle.load(f)
+# Load model yang sudah disimpan
+with open("delivery_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
-# # Load fitur
-# with open("model_features.pkl", "rb") as f:
-#     feature_columns = pickle.load(f)
+# Load fitur
+with open("model_features.pkl", "rb") as f:
+    feature_columns = pickle.load(f)
 
 
 
